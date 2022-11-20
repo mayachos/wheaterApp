@@ -12,9 +12,8 @@ import SwiftyJSON
 class ViewController: UIViewController {
     
     @IBOutlet var tenkiLabel: UILabel!
-    var tenki: String = ""
     let city = "Kochi"
-    var descriptionWeather: String?
+    var tenki: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +29,9 @@ class ViewController: UIViewController {
                         switch response.result {
                         case .success:
                             let json = JSON(response.data as Any)
-                            self.descriptionWeather = json["weather"][0]["main"].string!
-                            //self.descriptionWeather = json["results"]["album"]["data"].string!
+                            self.tenki = json["weather"][0]["main"].string!
                             
-                            self.tenkiLabel.text = self.descriptionWeather?.description
+                            self.tenkiLabel.text = self.tenki?.description
                             
                         case .failure(let error):
                             print(error)
